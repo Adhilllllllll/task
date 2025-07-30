@@ -4,10 +4,10 @@
   const [quotes,setQuotes]=useState([]);
 
    useEffect(()=>{
-     fetch("https://dummyjson.com/quotes")
+     fetch("http://localhost:3001/products")
     .then((res)=>res.json())
     .then((data)=>{
-      setQuotes(data.quotes.slice(0,10))
+      setQuotes(data.products)
     })
     .catch((error)=>console.error("error:",error))
 
@@ -15,9 +15,7 @@
   function  QuotesList({quotes}){
 return (
   <div>
-    {quotes.map((quote,index)=>(
-      <h3 key={index}>{quote.quote}</h3>
-    ))}
+    {quotes}
   </div>
 );
 }
