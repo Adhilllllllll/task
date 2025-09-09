@@ -1,23 +1,29 @@
  import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment } from './action';
  
  const App = () => {
-  const dispatch = useDispatch();
-  const count = useSelector((state)=>state.count);
 
+  //read store
+
+  const count=useSelector(state=>state.count);
+
+
+  //dispatch actions
+
+  const dispatch =useDispatch();
+  
 
    return (
-     <div style={{padding:'20px',fontFamily:'Arial'}}>
-      <h1>Counter Example </h1>
-      <p>{count}</p>
-
-      <button onClick={()=>dispatch(increment())} style={{marginRight:'10px'}}>
-          Increment
+     <div style={{padding:'20px'}}>
+    
+      <button onClick={()=>dispatch({type:'increment'})} style={{marginRight:'50px'}}>
+         +
       </button>
 
-      <button onClick={()=>dispatch(decrement())}>
-         Decrement
+        <p>{count}</p>
+     
+      <button onClick={()=>dispatch({type:'decrement'})} style={{marginRight:'50px'}}>
+        -
       </button>
      </div>
    )
