@@ -1,31 +1,32 @@
- import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+ import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addTask } from './todoSlice';
+import TodoList from './TodoList';
  
  const App = () => {
+  const dispatch=useDispatch();
+  const[taskText,setTaskText]=useState('');
 
-  //read store
-
-  const count=useSelector(state=>state.count);
-
-
-  //dispatch actions
-
-  const dispatch =useDispatch();
-  
-
+  const handleAdd=()=>{
+    if(taskText.trim()==='')return;
+    dispatch(addTask(taskText));
+    setTaskText('');
+  }
    return (
-     <div style={{padding:'20px'}}>
-    
-      <button onClick={()=>dispatch({type:'increment'})} style={{marginRight:'50px'}}>
-         +
+     <div>
+      <h1>TodoList</h1>
+      <input
+       value={taskText}
+       onChange={(e)=>setTaskText(e.target.value)}
+      />
+
+      <button onClick={handleAdd}>
+         Add Task
       </button>
 
-        <p>{count}</p>
-     
-      <button onClick={()=>dispatch({type:'decrement'})} style={{marginRight:'50px'}}>
-        -
-      </button>
+      <TodoList/>
      </div>
+     
    )
  }
  
